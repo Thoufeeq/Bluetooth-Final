@@ -25,15 +25,14 @@ public class MainActivity extends AppCompatActivity {
     String address = "20:13:10:08:09:19";
     public static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     static final int MESSAGE_READ = 1;
-
     Button button;
     TextView incoming;
     Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
+            // get something from the thread (read incoming data)
 
         }
-
     };
 
     @Override
