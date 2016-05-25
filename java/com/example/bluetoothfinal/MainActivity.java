@@ -57,10 +57,8 @@ public class MainActivity extends AppCompatActivity {
     private class ConnectThread extends Thread {
 
         public ConnectThread(BluetoothDevice device) {
-
             // Get a BluetoothSocket to connect with the given BluetoothDevice
             try {
-                // MY_UUID is the app's UUID string, also used by the server code
                 socket = device.createRfcommSocketToServiceRecord(MY_UUID);
             } catch (IOException e) { }
         }
@@ -96,9 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private class ConnectedThread extends Thread {
-
         public ConnectedThread(BluetoothSocket socket) {
-
             // Get the input and output streams, using temp objects because
             // member streams are final
             try {
@@ -132,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (IOException e) { }
         }
     }
-
 
 
 }
