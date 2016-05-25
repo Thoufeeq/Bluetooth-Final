@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     private class ConnectedThread extends Thread {
         public ConnectedThread(BluetoothSocket socket) {
             // Get the input and output streams, using temp objects because
