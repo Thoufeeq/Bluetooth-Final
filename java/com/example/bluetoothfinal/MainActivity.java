@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         public void handleMessage(Message msg) {
             switch (msg.what){
                 case 1:
-                    //update UI, in TextView
+                    //update UI (TextView)
                     data = Character.toString((char) bytes);
                     if (data.equals("A")) {
                         incoming.setText(cmd1);
