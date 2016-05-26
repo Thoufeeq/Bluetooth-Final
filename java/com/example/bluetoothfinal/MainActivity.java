@@ -13,7 +13,11 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +29,7 @@ import java.util.UUID;
 public class MainActivity extends AppCompatActivity {
 
     Button button;
+    ImageView imgView;
     BluetoothAdapter mBluetoothAdapter;
     BluetoothDevice device;
     BluetoothSocket socket;
@@ -36,10 +41,11 @@ public class MainActivity extends AppCompatActivity {
     byte[] buffer = new byte[1024];
     int bytes;
     String data;
-    String cmd1 = "Music Player turned ON";
-    String cmd2 = "Music Player turned OFF";
+    String cmd1 = "Music Player ON";
+    String cmd2 = "Music Player OFF";
     String cmd3 = "Command not recognized";
     MediaPlayer mediaPlayer;
+    Animation animation = new AlphaAnimation(1, 0);
     Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -49,10 +55,14 @@ public class MainActivity extends AppCompatActivity {
                     data = Character.toString((char) bytes);
                     if (data.equals("A")) {
                         incoming.setText(cmd1);
+                        Toast.makeText(getApplicationContext(),"Playing music...",Toast.LENGTH_SHORT).show();
+                        animation_start();
                         music_on();
                     }
                     else if (data.equals("B")) {
                         incoming.setText(cmd2);
+                        Toast.makeText(getApplicationContext(),"Music stopped.",Toast.LENGTH_SHORT).show();
+                        imgView.clearAnimation();
                         music_off();
                     }
                     else {incoming.setText(cmd3);}
@@ -67,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
         button = (Button) findViewById(R.id.b1);
         incoming = (TextView) findViewById(R.id.incoming);
+        imgView = (ImageView) findViewById(R.id.imgView);
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -126,6 +137,14 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    public void animation_start() {
+        animation.setDuration(400);
+        animation.setInterpolator(new LinearInterpolator());
+        animation.setRepeatCount(Animation.INFINITE);
+        animation.setRepeatMode(Animation.REVERSE);
+        imgView.startAnimation(animation);
     }
 
 }

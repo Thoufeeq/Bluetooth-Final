@@ -36,4 +36,13 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgView"
+        android:src="@drawable/music3"
+        android:layout_above="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/b1" />
+
 </RelativeLayout>
